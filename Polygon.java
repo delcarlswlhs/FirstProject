@@ -1,3 +1,4 @@
+
 /**
  * @file Polygon.java
  * @date 2/2/23
@@ -14,6 +15,7 @@ public class Polygon {
   private String shapeType;
   private boolean isPolygon;
   private double polyArea;
+  private double shapePerimeter;
 
   /**
    * @description creates a default polygon
@@ -38,17 +40,15 @@ public class Polygon {
     shapeType = sType;
     if (numSides > 2 && sideLength > 0) {
       isPolygon = true;
-    } 
-    else {
+    } else {
       isPolygon = false;
     }
-    if(isPolygon == false){
-        numSides = 3;
-        sideLength = 1.0;
-        shapeType = "triangle";
+    if (isPolygon == false) {
+      numSides = 3;
+      sideLength = 1.0;
+      shapeType = "triangle";
     }
   }
-
 
   // accessors as needed
 
@@ -78,11 +78,27 @@ public class Polygon {
 
   /**
    *
+   * @return the area
+   */
+  public double getArea() {
+    return calculateArea();
+  }
+
+  /**
+   *
+   * @return the perimeter
+   */
+  public double getPerimeter() {
+    return calculatePerimeter();
+  }
+
+  /**
+   *
    * @return the shape's perimeter
    */
   public double calculatePerimeter() {
-    double shapePerimeter = numSides *sideLength;
-    shapePerimeter = Math.round(shapePerimeter*1000)/1000.0;
+    shapePerimeter = numSides * sideLength;
+    shapePerimeter = Math.round(shapePerimeter * 1000) / 1000.0;
     return shapePerimeter;
   }
 
@@ -93,20 +109,24 @@ public class Polygon {
    */
   public double calculateArea() {
     polyArea = (sideLength * sideLength * numSides) / (4 * Math.tan(Math.toRadians(180 / numSides)));
-    polyArea = Math.round(polyArea*1000)/1000.0;
+    polyArea = Math.round(polyArea * 1000) / 1000.0;
     return polyArea;
   }
 
   // mutators
 
-  //set number of sides
+  // set number of sides
   public void setNumSides(int sides) {
+    if(sides>2){
     numSides = sides;
+  }
   }
 
   // set length of sides
   public void setSideLength(double newLength) {
+    if(newLength>=1.0){
     sideLength = newLength;
+    }
   }
 
   // set the shape type
