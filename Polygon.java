@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 /**
  * @file Polygon.java
  * @date 2/2/23
@@ -81,7 +79,9 @@ public class Polygon {
    * @return the shape's perimeter
    */
   public double calculatePerimeter() {
-    return numSides * sideLength;
+    double shapePerimeter = numSides *sideLength;
+    shapePerimeter = Math.round(shapePerimeter*1000)/1000.0;
+    return shapePerimeter;
   }
 
   /**
@@ -91,6 +91,7 @@ public class Polygon {
    */
   public double calculateArea() {
     polyArea = (sideLength * sideLength * numSides) / (4 * Math.tan(Math.toRadians(180 / numSides)));
+    polyArea = Math.round(polyArea*1000)/1000.0;
     return polyArea;
   }
 
@@ -113,11 +114,10 @@ public class Polygon {
 
   // toString method
   public String toString() {
-    DecimalFormat df = new DecimalFormat("#.###");
     if (isPolygon == true) {
       return "Your shape is a " + shapeType + " and it has " + numSides + " sides.\n" + "It has a side length of "
-          + sideLength + " units.\n" + "It has a perimeter of " + df.format(calculatePerimeter()) + " units.\n"
-          + "It has an area of " + df.format(calculateArea()) + " units.";
+          + sideLength + " units.\n" + "It has a perimeter of " + calculatePerimeter() + " units.\n"
+          + "It has an area of " + calculateArea() + " units.";
     } else {
       return "Not a valid polygon. Your polygon was given a default of " + numSides
           + " sides, was named \"triangle\", and each side has a length of " + sideLength + " units.";
