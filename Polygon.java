@@ -38,15 +38,17 @@ public class Polygon {
     shapeType = sType;
     if (numSides > 2 && sideLength > 0) {
       isPolygon = true;
-    } else {
+    } 
+    else {
       isPolygon = false;
-      if (numSides <= 2) {
+    }
+    if(isPolygon == false){
         numSides = 3;
-      } else if (sideLength <= 0) {
         sideLength = 1.0;
-      }
+        shapeType = "triangle";
     }
   }
+
 
   // accessors as needed
 
@@ -120,7 +122,7 @@ public class Polygon {
           + "It has an area of " + calculateArea() + " units.";
     } else {
       return "Not a valid polygon. Your polygon was given a default of " + numSides
-          + " sides, was named \"triangle\", and each side has a length of " + sideLength + " units.";
+          + " sides, was named \"" + shapeType + "\", and each side has a length of " + sideLength + " units.";
     }
   }
 }
